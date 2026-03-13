@@ -23,7 +23,7 @@ def lista_valore_pr ():
     valoritr = []
     while a >= 1 and b < 100 :
         if is_pari (a):
-            a = a/2
+            a = a//2
         else :
             a = a*3 +1
         valoritr.append(a)
@@ -41,6 +41,7 @@ def analizza_sequenza (lista) :
         if valorel > massimo:
             massimo = valorel
         somma = somma + valorel
+        controllo += 1
     return massimo, somma, lunghezza
 
 def ricerca_divisibili_5 (lista):
@@ -48,7 +49,7 @@ def ricerca_divisibili_5 (lista):
     length = len (lista)
     control = 0
     ndivisibili = 0
-    print ('i numeri divisibili per 5 sono: '/n)
+    print ('i numeri divisibili per 5 sono: ')
     while control < length:
         valorel = lista [control]
         if valorel % 5 == 0:
@@ -61,21 +62,11 @@ def ricerca_divisibili_5 (lista):
 numero_da_analizzare = input ('quanti numeri vuoi analizzare? ')
 numero_da_analizzare = int (numero_da_analizzare)
 
-while numero_da_analizzare!=1:
+for i in range (numero_da_analizzare):
     numero_controllo = return_valore ()
     numero_controllo = int (numero_controllo)
-    print (is_pari (numero_controllo))
-    sequenza = lista_valore_pr()
-    list (sequenza)
-    print (analizza_sequenza (sequenza))
-    ricerca_divisibili_5 (sequenza)
-
-#for i in range (numero_da_analizzare):
-  #  numero_controllo = return_valore ()
-  #  numero_controllo = int (numero_controllo)
-  # print (is_pari (numero_controllo))
-  # sequenza = lista_valore_pr ()
-  #  list (sequenza)
-  # print (analizza_sequenza (sequenza))
-  #ricerca_divisibili_5 (sequenza)
+   print (is_pari (numero_controllo))
+   sequenza = lista_valore_pr () 
+   print (analizza_sequenza (sequenza))
+   ricerca_divisibili_5 (sequenza)
 

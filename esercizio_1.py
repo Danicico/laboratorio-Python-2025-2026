@@ -1,9 +1,8 @@
 def is_pari (n):
     '''Vedo se un numero è pari o dispari'''
-    bool b
-    if n%2 == 0
+    if n%2 == 0 :
         return True
-    else 
+    else :
         return False
 
 def return_valore ():
@@ -11,6 +10,7 @@ def return_valore ():
     a = True
     while a:
         b = input('scrivi un numero positivo: ')
+        b = int (b)
         if b > 0:
             a = False
     return b
@@ -18,9 +18,10 @@ def return_valore ():
 def lista_valore_pr ():
     '''creo una lista in base al numero precedente'''
     a = return_valore ()
+    a = int (a)
     b = 0
     valoritr = []
-    while a >= 1 and b <= 100 :
+    while a >= 1 and b < 100 :
         if is_pari (a):
             a = a/2
         else :
@@ -57,13 +58,24 @@ def ricerca_divisibili_5 (lista):
     if ndivisibili == 0:
         print('non erano presenti numeri divisibili per 5')
 
-main:
-numeri_da_analizzare = input ('qunati numeri vuoi analizzare? ')
+numero_da_analizzare = input ('quanti numeri vuoi analizzare? ')
+numero_da_analizzare = int (numero_da_analizzare)
 
-for i in range (numeri_da_analizzare):
+while numero_da_analizzare!=1:
     numero_controllo = return_valore ()
-    print (is_pari (numero controllo))
-    sequenza = lista_valore_pr ()
+    numero_controllo = int (numero_controllo)
+    print (is_pari (numero_controllo))
+    sequenza = lista_valore_pr()
+    list (sequenza)
     print (analizza_sequenza (sequenza))
     ricerca_divisibili_5 (sequenza)
+
+#for i in range (numero_da_analizzare):
+  #  numero_controllo = return_valore ()
+  #  numero_controllo = int (numero_controllo)
+  # print (is_pari (numero_controllo))
+  # sequenza = lista_valore_pr ()
+  #  list (sequenza)
+  # print (analizza_sequenza (sequenza))
+  #ricerca_divisibili_5 (sequenza)
 

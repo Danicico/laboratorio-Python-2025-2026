@@ -15,13 +15,13 @@ def return_valore ():
             a = False
     return b
 
-def lista_valore_pr ():
+def lista_valore_pr (controllo_valore):
     '''creo una lista in base al numero precedente'''
-    a = return_valore ()
+    a = controllo_valore
     a = int (a)
     b = 0
     valoritr = []
-    while a >= 1 and b < 100 :
+    while a > 1 and b < 100 :
         if is_pari (a):
             a = a//2
         else :
@@ -65,8 +65,8 @@ numero_da_analizzare = int (numero_da_analizzare)
 for i in range (numero_da_analizzare):
     numero_controllo = return_valore ()
     numero_controllo = int (numero_controllo)
-   print (is_pari (numero_controllo))
-   sequenza = lista_valore_pr () 
-   print (analizza_sequenza (sequenza))
-   ricerca_divisibili_5 (sequenza)
-
+    print (is_pari (numero_controllo))
+    sequenza = lista_valore_pr (numero_controllo)
+    print ('I sequenti numeri rappresentano il massimo, la somma e la lunghezza della lista') 
+    print (analizza_sequenza (sequenza))
+    ricerca_divisibili_5 (sequenza)

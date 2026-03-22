@@ -33,7 +33,7 @@ def n_parole(t):
     list_testo = t.split ("\n")
     n_parole = 0
     for j in range (len(list_testo)):
-        if list_testo [j] != '':
+        if list_testo [j] != '' :
          list_parole = list_testo[j].split (" ")
          n_parole = n_parole + len (list_parole)
     return n_parole
@@ -46,6 +46,65 @@ def n_caratteri(t):
             n_caratteri+=1                  #caratteri sono alfanumerici
     return n_caratteri
 
-print(n_righe(testo))
-print(n_parole(testo))
-print(n_caratteri(testo))
+def carattere_p(t, lettera):
+    list_caratteri = list(t)
+    n_caratteri = 0
+    for i in range (len(list_caratteri)):
+        if list_caratteri[i] == lettera or list_caratteri[i] == lettera.upper():
+            n_caratteri+=1
+    return n_caratteri
+
+def sostituzione_PYTHON(t):
+    list_testo = t.split('\n')
+    parole_cercate = ['day', 'about', 'water']
+    for i in range (len(list_testo)):
+        parole = list_testo[i].split(" ")
+        for j in range (len(parole)):
+             for k in parole_cercate :
+                if parole[j].lower() == k or parole[j].lower() == k + ',':
+                    parole [j] = 'PYTHON'
+        list_testo [i] = " ".join(parole)
+    return list_testo
+
+def parole_dispari(t):
+    list_testo = t.split('\n')
+    for i in range (len(list_testo)):
+        parole = list_testo[i].split(" ")
+        for j in range (len(parole)):
+            if j%2 == 0:
+                parole [j] = parole[j].upper()
+        list_testo [i] = " ".join(parole)
+    return list_testo
+
+def versi_contrario(t):
+    list_testo = t.split ("\n")
+    list_contrario = []
+    for i in range (len(list_testo)):
+        list_contrario.append(list_testo [-i])
+    return list_contrario
+
+def verso_2_inverso(t):
+
+    list_testo = t.split ("\n")
+    controllo = 1
+    list_contrario = []
+    for j in range (len(list_testo)):
+        if j == controllo:
+            list_lettere = list(list_testo[j])
+            for k in range(list_lettere):
+               list_contrario.append(list_lettere[-k])
+            controllo+=2
+        list_testo[j] = "".join(list_contrario)
+    return list_testo
+
+
+    
+#print(n_righe(testo))
+#print(n_parole(testo))
+#print(n_caratteri(testo))
+#lettera_cercata = input ('inserisci una lettera da cercare nel testo: ')
+#print(carattere_p(testo, lettera_cercata))
+#print(sostituzione_PYTHON(testo))
+#print(parole_dispari(testo))
+#print (versi_contrario(testo))
+print (verso_2_inverso(testo))

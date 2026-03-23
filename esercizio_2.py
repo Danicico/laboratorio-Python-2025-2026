@@ -84,18 +84,20 @@ def versi_contrario(t):
     return list_contrario
 
 def verso_2_inverso(t):
-
-    list_testo = t.split ("\n")
-    controllo = 1
-    list_contrario = []
-    for j in range (len(list_testo)):
-        if j == controllo:
-            list_lettere = list(list_testo[j])
-            for k in range(list_lettere):
-               list_contrario.append(list_lettere[-k])
-            controllo+=2
-        list_testo[j] = "".join(list_contrario)
+    list_testo = t.split("\n")
+    controllo = 0
+    for i in range(len(list_testo)):
+        if list_testo[i] != '' and list_testo[i] != ' ':
+            list_parole = list_testo[i]
+            if controllo == 1:
+                list_parole = list(list_testo[i])
+                list_parole = "".join(list_parole[::-1])   #compatto la lista in una str
+            list_testo[i] = list_parole
+            if controllo ==4 :
+                controllo = 0
+            controllo+=1
     return list_testo
+
 
 
     
@@ -107,4 +109,4 @@ def verso_2_inverso(t):
 #print(sostituzione_PYTHON(testo))
 #print(parole_dispari(testo))
 #print (versi_contrario(testo))
-print (verso_2_inverso(testo))
+print (verso_2_inverso(testo))esto))

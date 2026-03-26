@@ -86,7 +86,7 @@ def verso_2_inverso(t):
             list_parole = list_testo[i]
             if controllo == 1:
                 list_parole = list(list_testo[i])
-                list_parole = "".join(list_parole[::-1])   #compatto la lista in una str
+                list_parole = "".join(list_parole[::-1])   #compatto la lista in una str, attraverso lo slicing (funziona come il range circa)
             list_testo[i] = list_parole
             if controllo ==4 :
                 controllo = 0

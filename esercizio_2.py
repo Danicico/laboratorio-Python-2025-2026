@@ -23,26 +23,21 @@ Burnt green, and blue and white.
 def n_righe (t):
     list_testo = t.split ("\n")
     n_righe = 0
-    lunghezza = len (list_testo)
-    for i in range(lunghezza):
-        if list_testo[i] != '':
+    for i in list_testo:
+        if i != '':
             n_righe+=1
     return n_righe
 
 def n_parole(t):
-    list_testo = t.split ("\n")
-    n_parole = 0
-    for j in range (len(list_testo)):
-        if list_testo [j] != '' :
-         list_parole = list_testo[j].split (" ")
-         n_parole = n_parole + len (list_parole)
+    list_testo = t.split ()
+    n_parole =  len (list_parole)
     return n_parole
 
 def n_caratteri(t):
     list_caratteri = list(t)
     n_caratteri = 0
-    for i in range (len(list_caratteri)):
-        if list_caratteri[i].isalnum:       #con questo programma controllo quali
+    for i in list_caratteri:
+        if i.isalnum:                       #con questo programma controllo quali
             n_caratteri+=1                  #caratteri sono alfanumerici
     return n_caratteri
 
@@ -97,6 +92,8 @@ def verso_2_inverso(t):
                 controllo = 0
             controllo+=1
     return list_testo
+
+def 
 
 
 

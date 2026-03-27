@@ -92,9 +92,37 @@ def verso_2_inverso(t):
                 controllo = 0
             controllo+=1
     return list_testo
+ 
+def parole_uguali(t):
+    list_righe = t.split('\n')
+    list_righe = list(i for i in list_righe if i != '')
+    strofa = ''
+    conteggio = 0
+    list_strofa = []
+    n=0
+    for i in list_righe:
+        strofa = strofa + i
+        n+=1
+        if n == 3:
+            n = 0
+            list_strofa.append(strofa)
+            strofa = ''
+            parole_strofa = False
+    return parole_strofa   
 
-def 
-
+def lista_parole_uniche(t):
+    lista_parole = t.split()
+    set_parole = {''}
+    for i in lista_parole:
+        parola = list(i)
+        for j in parola:
+            if not j.isalnum:
+                j = ''
+        parola = ''.join(parola)
+        set_parole.add(parola)
+    lista_parole_pulite = list (set_parole)
+    return lista_parole_pulite
+     
 
 
     
@@ -106,4 +134,9 @@ def
 #print(sostituzione_PYTHON(testo))
 #print(parole_dispari(testo))
 #print (versi_contrario(testo))
-print (verso_2_inverso(testo))esto))
+#print (verso_2_inverso(testo))
+#if parole_uguali(testo):
+#   print ('ci sono parole uguali')
+#else :
+#   print ('non ci sono parole uguali')
+print (lista_parole_uniche(testo))

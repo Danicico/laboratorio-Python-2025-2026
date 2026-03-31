@@ -20,6 +20,8 @@ The water, like a witch's oils,
 Burnt green, and blue and white.
 '''
 
+caratteri = [',', '.', ':', ';', '?', '!']
+
 def n_righe (t):
     list_testo = t.split ("\n")
     n_righe = 0
@@ -94,34 +96,48 @@ def verso_2_inverso(t):
     return list_testo
  
 def parole_uguali(t):
-    list_righe = t.split('\n')
-    list_righe = list(i for i in list_righe if i != '')
-    strofa = ''
-    conteggio = 0
-    list_strofa = []
-    n=0
-    for i in list_righe:
-        strofa = strofa + i
-        n+=1
-        if n == 3:
-            n = 0
-            list_strofa.append(strofa)
-            strofa = ''
-            parole_strofa = False
-    return parole_strofa   
+    strofe = t.strip().split('\n\n')
+    parole_uguali = set()
+    for i in range(len(strofe)):
+        parole = strofe[i].split()
+        for k in parole:
+            controllo_1 = 0
+            controllo_2 = 0
+            controllo_3 = 0
+            controllo_4 = 0
+            for j in range(len(strofe)):
+                if i != j:
+                    parole_controllo = strofe[j].split()
+                    for m in parole_controllo:
+                        for n in (0, 1 ,2 ,3 ,4 ,5):
+                            if j == 0 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
+                                controllo_1 = 1
+                            elif j == 1 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
+                                controllo_2 = 1
+                            elif j == 2 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
+                                controllo_3 = 1
+                            elif j == 3 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
+                                controllo_4 = 1
+                        somma = controllo_1 + controllo_2 + controllo_3 + controllo_4
+                        if somma == 3:
+                            parole_uguali.add(k.lower())
+    return parole_uguali                        
 
 def lista_parole_uniche(t):
-    lista_parole = t.split()
-    set_parole = {''}
+    testo_senza_punteggiatura = "".join(c for c in t if c.isalpha() or c.isspace())
+    lista_parole = testo_senza_punteggiatura.split()
+    set_parole = set()
+    lunghezza_parola_maggiore = 0
+    for j in lista_parole:
+        set_parole.add(j.lower()) 
+    lista_parole = list (set_parole)
     for i in lista_parole:
-        parola = list(i)
-        for j in parola:
-            if not j.isalnum:
-                j = ''
-        parola = ''.join(parola)
-        set_parole.add(parola)
-    lista_parole_pulite = list (set_parole)
-    return lista_parole_pulite
+        if lunghezza_parola_maggiore < len(i):
+            lunghezza_parola_maggiore = len(i)
+    for i in lista_parole:
+        for j in range(lunghezza_parola_maggiore):
+
+    return lista_parole
      
 
 
@@ -135,8 +151,6 @@ def lista_parole_uniche(t):
 #print(parole_dispari(testo))
 #print (versi_contrario(testo))
 #print (verso_2_inverso(testo))
-#if parole_uguali(testo):
-#   print ('ci sono parole uguali')
-#else :
-#   print ('non ci sono parole uguali')
+#print ("le parole uguali sono: ")
+#print (parole_uguali(testo))
 print (lista_parole_uniche(testo))

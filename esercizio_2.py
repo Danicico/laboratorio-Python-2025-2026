@@ -126,31 +126,60 @@ def parole_uguali(t):
 def lista_parole_uniche(t):
     testo_senza_punteggiatura = "".join(c for c in t if c.isalpha() or c.isspace())
     lista_parole = testo_senza_punteggiatura.split()
+    lista_ordinata = []
+    lunghezza_parola_maggiore = 1
     set_parole = set()
-    lunghezza_parola_maggiore = 0
-    for j in lista_parole:
-        set_parole.add(j.lower()) 
-    lista_parole = list (set_parole)
-    for i in lista_parole:
-        if lunghezza_parola_maggiore < len(i):
-            lunghezza_parola_maggiore = len(i)
-    for i in lista_parole:
-        for j in range(lunghezza_parola_maggiore):
+    for controllo in range (15):
+        for i in lista_parole:
+            if len(i) == controllo:
+                set_parole.add(i.lower())
+        set_parole = list (set_parole)
+        lista_ordinata =lista_ordinata + set_parole
+        set_parole = set()
+    return lista_ordinata
 
-    return lista_parole
+def dizionario_valore(t):
+    lista_lettere = list(t.lower())
+    set_lettere = set(t.lower())
+    conteggio = 0
+    lettere_conteggio = {}
+    for i in set_lettere:
+        for j in lista_lettere:
+            if j == i:
+                conteggio +=1
+        lettere_conteggio[i] = conteggio
+        conteggio = 0   
+    return lettere_conteggio
+def dizionario_valore_alfanumerico(t):
+    testo_senza_punteggiatura = "".join(c for c in t if c.isalpha())
+    lista_lettere = list(testo_senza_punteggiatura.lower())
+    set_lettere = set(testo_senza_punteggiatura.lower())
+    conteggio = 0
+    lettere_conteggio = {}
+    for i in set_lettere:
+        for j in lista_lettere:
+            if j == i:
+                conteggio +=1
+        lettere_conteggio[i] = conteggio
+        conteggio = 0   
+    return lettere_conteggio
+ 
      
 
 
     
-#print(n_righe(testo))
-#print(n_parole(testo))
-#print(n_caratteri(testo))
-#lettera_cercata = input ('inserisci una lettera da cercare nel testo: ')
-#print(carattere_p(testo, lettera_cercata))
-#print(sostituzione_PYTHON(testo))
-#print(parole_dispari(testo))
-#print (versi_contrario(testo))
-#print (verso_2_inverso(testo))
-#print ("le parole uguali sono: ")
-#print (parole_uguali(testo))
+print(n_righe(testo))
+print(n_parole(testo))
+print(n_caratteri(testo))
+lettera_cercata = input ('inserisci una lettera da cercare nel testo: ')
+print(carattere_p(testo, lettera_cercata))
+print(sostituzione_PYTHON(testo))
+print(parole_dispari(testo))
+print (versi_contrario(testo))
+print (verso_2_inverso(testo))
+print ("le parole uguali sono: ")
+print (parole_uguali(testo))
 print (lista_parole_uniche(testo))
+print (dizionario_valore(testo))
+print (dizionario_valore_alfanumerico(testo))
+iche(testo))

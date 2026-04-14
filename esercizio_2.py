@@ -150,6 +150,7 @@ def dizionario_valore(t):
         lettere_conteggio[i] = conteggio
         conteggio = 0   
     return lettere_conteggio
+    
 def dizionario_valore_alfanumerico(t):
     testo_senza_punteggiatura = "".join(c for c in t if c.isalpha())
     lista_lettere = list(testo_senza_punteggiatura.lower())

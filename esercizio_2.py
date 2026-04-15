@@ -32,7 +32,7 @@ def n_righe (t):
 
 def n_parole(t):
     list_testo = t.split ()
-    n_parole =  len (list_parole)
+    n_parole =  len (list_testo)
     return n_parole
 
 def n_caratteri(t):
@@ -182,4 +182,4 @@ print ("le parole uguali sono: ")
 print (parole_uguali(testo))
 print (lista_parole_uniche(testo))
 print (dizionario_valore(testo))
-print (dizionario_valore_alfanumerico(testo))
+print (dizionario_valore_alfanumerico(testo))fanumerico(testo))

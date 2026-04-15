@@ -1,8 +1,9 @@
 import sys
 import argparse
+import json
 
 rubrica = {
-  'Paolino Paperino': {'giorno': 9,
+  'Paolino Paperino': {'giorno': 9, 
                       'mese': 'giugno',
                       'anno': 1934,
                       'età': 93,
@@ -109,3 +110,10 @@ elif controllo == '6':
     righe_nomi.close()
 else:
     print('comando sbagliato, mi dispiace')
+
+with open ("dizionario_file.json", "w") as write_file:
+    json.dump(rubrica, write_file, indent = 4)
+with open ('dizionario_file.json', "r") as in_file:
+    data = json.load (in_file)
+
+print(data)

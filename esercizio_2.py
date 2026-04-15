@@ -1,4 +1,4 @@
-testo = '''
+t = '''
 Day after day, day after day,
 We stuck, nor breath nor motion;
 As idle as a painted ship
@@ -22,7 +22,7 @@ Burnt green, and blue and white.
 
 caratteri = [',', '.', ':', ';', '?', '!']
 
-def n_righe (t):
+def n_righe ():
     list_testo = t.split ("\n")
     n_righe = 0
     for i in list_testo:
@@ -30,12 +30,12 @@ def n_righe (t):
             n_righe+=1
     return n_righe
 
-def n_parole(t):
+def n_parole():
     list_testo = t.split ()
     n_parole =  len (list_testo)
     return n_parole
 
-def n_caratteri(t):
+def n_caratteri():
     list_caratteri = list(t)
     n_caratteri = 0
     for i in list_caratteri:
@@ -43,7 +43,7 @@ def n_caratteri(t):
             n_caratteri+=1                  #caratteri sono alfanumerici
     return n_caratteri
 
-def carattere_p(t, lettera):
+def carattere_p( lettera):
     list_caratteri = list(t)
     n_caratteri = 0
     for i in range (len(list_caratteri)):
@@ -51,7 +51,7 @@ def carattere_p(t, lettera):
             n_caratteri+=1
     return n_caratteri
 
-def sostituzione_PYTHON(t):
+def sostituzione_PYTHON():
     list_testo = t.split('\n')
     parole_cercate = ['day', 'about', 'water']
     for i in range (len(list_testo)):
@@ -63,7 +63,7 @@ def sostituzione_PYTHON(t):
         list_testo [i] = " ".join(parole)
     return list_testo
 
-def parole_dispari(t):
+def parole_dispari():
     list_testo = t.split('\n')
     for i in range (len(list_testo)):
         parole = list_testo[i].split(" ")
@@ -73,14 +73,14 @@ def parole_dispari(t):
         list_testo [i] = " ".join(parole)
     return list_testo
 
-def versi_contrario(t):
+def versi_contrario():
     list_testo = t.split ("\n")
     list_contrario = []
     for i in range (len(list_testo)):
         list_contrario.append(list_testo [-i])
     return list_contrario
 
-def verso_2_inverso(t):
+def verso_2_inverso():
     list_testo = t.split("\n")
     controllo = 0
     for i in range(len(list_testo)):
@@ -95,7 +95,7 @@ def verso_2_inverso(t):
             controllo+=1
     return list_testo
  
-def parole_uguali(t):
+def parole_uguali():
     strofe = t.strip().split('\n\n')
     parole_uguali = set()
     for i in range(len(strofe)):
@@ -123,7 +123,7 @@ def parole_uguali(t):
                             parole_uguali.add(k.lower())
     return parole_uguali                        
 
-def lista_parole_uniche(t):
+def lista_parole_uniche():
     testo_senza_punteggiatura = "".join(c for c in t if c.isalpha() or c.isspace())
     lista_parole = testo_senza_punteggiatura.split()
     lista_ordinata = []
@@ -138,7 +138,7 @@ def lista_parole_uniche(t):
         set_parole = set()
     return lista_ordinata
 
-def dizionario_valore(t):
+def dizionario_valore():
     lista_lettere = list(t.lower())
     set_lettere = set(t.lower())
     conteggio = 0
@@ -151,7 +151,7 @@ def dizionario_valore(t):
         conteggio = 0   
     return lettere_conteggio
     
-def dizionario_valore_alfanumerico(t):
+def dizionario_valore_alfanumerico():
     testo_senza_punteggiatura = "".join(c for c in t if c.isalpha())
     lista_lettere = list(testo_senza_punteggiatura.lower())
     set_lettere = set(testo_senza_punteggiatura.lower())
@@ -169,17 +169,17 @@ def dizionario_valore_alfanumerico(t):
 
 
     
-print(n_righe(testo))
-print(n_parole(testo))
-print(n_caratteri(testo))
+print(n_righe())
+print(n_parole())
+print(n_caratteri())
 lettera_cercata = input ('inserisci una lettera da cercare nel testo: ')
-print(carattere_p(testo, lettera_cercata))
-print(sostituzione_PYTHON(testo))
-print(parole_dispari(testo))
-print (versi_contrario(testo))
-print (verso_2_inverso(testo))
+print(carattere_p( lettera_cercata))
+print(sostituzione_PYTHON())
+print(parole_dispari())
+print (versi_contrario())
+print (verso_2_inverso())
 print ("le parole uguali sono: ")
-print (parole_uguali(testo))
-print (lista_parole_uniche(testo))
-print (dizionario_valore(testo))
-print (dizionario_valore_alfanumerico(testo))fanumerico(testo))
+print (parole_uguali())
+print (lista_parole_uniche())
+print (dizionario_valore())
+print (dizionario_valore_alfanumerico())

@@ -61,26 +61,46 @@ def main():
     solutions = 0                 
     
     # misuro il tempo di partenza per la ricerca della soluzione
-    start_time = time.time()            
+    start_time = time.time() 
+
+    lista_tempo = []
+
+    lista_combinazioni = []  
+
+    numero_tentativi = 0
     
     # loop finchè non trovo una soluzione
-    while solutions < 92:
+    while solutions < 20:
+
+        controllo = True 
     
         # permutazione casuale della soluzione 'mescolando' posizioni
         random_generator.shuffle(scacchiera) 
         
+        numero_tentativi+=1
+
         # verifica se la permutazione casuale e' soluzione  
-        #if soluzione_ok(scacchiera) == True: 
-        if soluzione_ok(scacchiera): 
+        #if soluzione_ok(scacchiera) == True:
+
+        for i in lista_combinazioni:
+            if scacchiera == list(i):
+                controllo = False
+        if soluzione_ok(scacchiera) and controllo: 
             # se la soluzione è buona, scrive
             print(f'Found solution {scacchiera} in {time.time() - start_time} s.')
             
             # incremento contatore soluzioni trovate (condizione stop loop)
-            solutions += 1      
-            
+            if controllo:
+                solutions += 1      
+            lista_tempo.append (time.time()-start_time)
+            scacchiera_1 = tuple(scacchiera)
+            lista_combinazioni.append(scacchiera_1)
             # reset timer ricerca soluzione
             start_time = time.time()
-
+            print("tempo medio = " + str(sum(lista_tempo)/solutions))
+            print("il numero di tentativi per trovare " + str(solutions) + " soluzioni è circa: " + str(numero_tentativi))
+            numero_tentativi = 0
 
 # chiamo la funzione principale 
+main()
 main()

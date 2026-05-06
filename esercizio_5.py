@@ -53,9 +53,11 @@ import time
 def main():
     # inizializzo generatore permutazioni
     random_generator = random.Random() 
+
+    n = input('scrivi la grandezza della tabella: ')
     
     # preparo la "possibile soluzione" con posizoni da testare
-    scacchiera = list(range(8)) 
+    scacchiera = list(range(int(n))) 
     
     # conto le soluzioni trovate, inizio da 0           
     solutions = 0                 
@@ -68,39 +70,48 @@ def main():
     lista_combinazioni = []  
 
     numero_tentativi = 0
+
+    dizionario_ripetizioni = dict()
     
     # loop finchè non trovo una soluzione
-    while solutions < 20:
+    if int(n) >=4:
+        while solutions < 1:
 
-        controllo = True 
+            controllo = True 
     
-        # permutazione casuale della soluzione 'mescolando' posizioni
-        random_generator.shuffle(scacchiera) 
-        
-        numero_tentativi+=1
+            # permutazione casuale della soluzione 'mescolando' posizioni
 
-        # verifica se la permutazione casuale e' soluzione  
-        #if soluzione_ok(scacchiera) == True:
+            random_generator.shuffle(scacchiera)
+            corretto = str(scacchiera)
+            if corretto in dizionario_ripetizioni:
+                dizionario_ripetizioni[corretto] += 1
+            if corretto not in dizionario_ripetizioni and soluzione_ok(scacchiera):
+                dizionario_ripetizioni[corretto] = 1
+            numero_tentativi+=1
 
-        for i in lista_combinazioni:
-            if scacchiera == list(i):
-                controllo = False
-        if soluzione_ok(scacchiera) and controllo: 
-            # se la soluzione è buona, scrive
-            print(f'Found solution {scacchiera} in {time.time() - start_time} s.')
+            # verifica se la permutazione casuale e' soluzione  
+            #if soluzione_ok(scacchiera) == True:
+
+            for i in lista_combinazioni:
+                if scacchiera == list(i):
+                    controllo = False
+            if soluzione_ok(scacchiera) and controllo: 
+                # se la soluzione è buona, scrive
+                print(f'Found solution {scacchiera} in {time.time() - start_time} s.')
             
-            # incremento contatore soluzioni trovate (condizione stop loop)
-            if controllo:
-                solutions += 1      
-            lista_tempo.append (time.time()-start_time)
-            scacchiera_1 = tuple(scacchiera)
-            lista_combinazioni.append(scacchiera_1)
-            # reset timer ricerca soluzione
-            start_time = time.time()
-            print("tempo medio = " + str(sum(lista_tempo)/solutions))
-            print("il numero di tentativi per trovare " + str(solutions) + " soluzioni è circa: " + str(numero_tentativi))
-            numero_tentativi = 0
-
+                # incremento contatore soluzioni trovate (condizione stop loop)
+                if controllo:
+                    solutions += 1      
+                lista_tempo.append (time.time()-start_time)
+                scacchiera_1 = tuple(scacchiera)
+                lista_combinazioni.append(scacchiera_1)
+                # reset timer ricerca soluzione
+                start_time = time.time()
+                print("tempo medio = " + str(sum(lista_tempo)/solutions))
+                print("il numero di tentativi per trovare " + str(solutions) + " soluzioni è circa: " + str(numero_tentativi))
+                numero_tentativi = 0
+        print (dizionario_ripetizioni)
+    else:
+        print ('numero di righe non valido')
 # chiamo la funzione principale 
-main()
 main()

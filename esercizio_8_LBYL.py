@@ -1,10 +1,6 @@
 import json
 import random
 
-dati = {"parole" : ["elicottero", "parallelepipedo", "trapezio"]}
-with open ("esercizio_8_parole.json", "w") as write_file:
-    json.dump(dati, write_file, indent = 4)
-
 with open("esercizio_8_parole.json", "r") as in_file:
     parole = json.load(in_file)
 
@@ -41,6 +37,6 @@ while controllo != 1:
         if vite == 5:
             print("GAME OVER")
             controllo = 1
-            lettere_già_usate.add(lettera_inserita.lower())
+        lettere_già_usate.add(lettera_inserita.lower())
     else:
         print("carattere non valido")

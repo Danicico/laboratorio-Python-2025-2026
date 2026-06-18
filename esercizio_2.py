@@ -1,3 +1,40 @@
+#
+# File: esercizio_2.py
+#
+# Author: D. Cicogna
+#
+# Date: 18/06/2026
+#
+# Version: 1.0
+#
+# Description: Contate le righe non vuote che compongono l’estratto
+#
+#Contate le parole che compongono l’estratto
+#
+#Contate i caratteri alfanumerici che compongono l’estratto
+#
+#Chiedere all’utente una lettera e contate quante volte compare nel testo
+#
+#Sostituite tutte le parole day, water e about con la parola PYTHON in tutti i versi
+#
+#Riscrivete il testo in modo che tutte le parole in posizione dispari siano scritte in maiuscolo
+#
+#Riscrivere il testo invertendo l’ordine delle frasi dal basso all’alto.
+#
+#Riscrivete il testo in modo che il secondo verso di ogni strofa sia scritto a specchio 
+#(cioè al contrario carattere per carattere: Ad esempio, questa frase’ –> ‘esarf atseuq ,oipmese dA’)
+#
+#Trovate eventuali parole che compaiono in tutte le strofe
+#
+#Create la lista univoca di tutte le parole che compaiono nel testo, ordinatela per lunghezza 
+#delle parole e visualizzatela
+#
+#Create un dizionario che mappi OGNI carattere (chiave) con la sua occorrenza nel testo (valore) e visualizzatelo
+#
+#Create un dizionario come il precedente per i soli caratteri alfanumerici (no caratteri speciali),
+# ignorando maiuscole e minuscole
+#
+
 t = '''
 Day after day, day after day,
 We stuck, nor breath nor motion;
@@ -20,30 +57,34 @@ The water, like a witch's oils,
 Burnt green, and blue and white.
 '''
 
-caratteri = [',', '.', ':', ';', '?', '!']
+caratteri = [',', '.', ':', ';', '?', '!']          # mi segno i simboli di punteggiatura più usati
 
 def n_righe ():
-    list_testo = t.split ("\n")
+    """conto quante righe ci sono nel programma"""
+    list_testo = t.split ("\n")                     # divido il testo in base a quando si va a capo
     n_righe = 0
-    for i in list_testo:
-        if i != '':
+    for i in list_testo:                            # creo un ciclo per vedere quante righe ci sono, non considerando
+        if i != '':                                 # le righe vuote
             n_righe+=1
     return n_righe
 
 def n_parole():
-    list_testo = t.split ()
+    """ conto quante parole ci sono nel testo"""
+    list_testo = t.split ()                         # divido il testo nelle sole parole
     n_parole =  len (list_testo)
     return n_parole
 
 def n_caratteri():
-    list_caratteri = list(t)
-    n_caratteri = 0
+    """conto il numero di caratteri che ci sono all'interno del testo"""
+    list_caratteri = list(t)                        # creo una lista con ogni singolo carattere del testo
+    n_caratteri = 0     
     for i in list_caratteri:
-        if i.isalnum:                       #con questo programma controllo quali
-            n_caratteri+=1                  #caratteri sono alfanumerici
+        if i.isalnum:                               #con questo programma controllo quali
+            n_caratteri+=1                          #caratteri sono alfanumerici
     return n_caratteri
 
 def carattere_p( lettera):
+    """vedo quante volte un determinato carattere è nel testo"""
     list_caratteri = list(t)
     n_caratteri = 0
     for i in range (len(list_caratteri)):
@@ -52,18 +93,21 @@ def carattere_p( lettera):
     return n_caratteri
 
 def sostituzione_PYTHON():
+    """sostituisco le parole day, about, water con PYTHON, prima cercandole"""
     list_testo = t.split('\n')
     parole_cercate = ['day', 'about', 'water']
     for i in range (len(list_testo)):
-        parole = list_testo[i].split(" ")
+        parole = list_testo[i].split(" ")      #divido ogni riga in parole
         for j in range (len(parole)):
              for k in parole_cercate :
-                if parole[j].lower() == k or parole[j].lower() == k + ',':
-                    parole [j] = 'PYTHON'
-        list_testo [i] = " ".join(parole)
+                for L in caratteri:
+                    if parole[j].lower() == k or parole[j].lower() == k + L:
+                        parole [j] = 'PYTHON'
+        list_testo [i] = " ".join(parole)      #riunisco le parole in una riga
     return list_testo
 
 def parole_dispari():
+    """riscrivo tutte le parole in posizione dispari in maiuscolo"""
     list_testo = t.split('\n')
     for i in range (len(list_testo)):
         parole = list_testo[i].split(" ")
@@ -74,6 +118,7 @@ def parole_dispari():
     return list_testo
 
 def versi_contrario():
+    """inverto l'ordine delle righe"""
     list_testo = t.split ("\n")
     list_contrario = []
     for i in range (len(list_testo)):
@@ -81,6 +126,7 @@ def versi_contrario():
     return list_contrario
 
 def verso_2_inverso():
+    """faccio in modo che ogni seconda riga abbia le lettere nell'ordine inverso"""
     list_testo = t.split("\n")
     controllo = 0
     for i in range(len(list_testo)):
@@ -96,7 +142,8 @@ def verso_2_inverso():
     return list_testo
  
 def parole_uguali():
-    strofe = t.strip().split('\n\n')
+    """controllo se ci sono parole che si ripetono in tutte le strofe"""
+    strofe = t.strip().split('\n\n')   #divido il testo in strofe ed elimino gli spazi vuoti iniziali e finali
     parole_uguali = set()
     for i in range(len(strofe)):
         parole = strofe[i].split()
@@ -112,33 +159,34 @@ def parole_uguali():
                         for n in (0, 1 ,2 ,3 ,4 ,5):
                             if j == 0 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
                                 controllo_1 = 1
-                            elif j == 1 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
+                            if j == 1 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
                                 controllo_2 = 1
-                            elif j == 2 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
+                            if j == 2 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
                                 controllo_3 = 1
-                            elif j == 3 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
+                            if j == 3 and (k.lower() == m.lower() or k.lower() == m.lower() + caratteri[n]) :
                                 controllo_4 = 1
                         somma = controllo_1 + controllo_2 + controllo_3 + controllo_4
-                        if somma == 3:
+                        if somma == 4:
                             parole_uguali.add(k.lower())
     return parole_uguali                        
 
 def lista_parole_uniche():
-    testo_senza_punteggiatura = "".join(c for c in t if c.isalpha() or c.isspace())
+    """creo una lista con tutte le parole uniche, ordinata per lunghezza delle parole"""
+    testo_senza_punteggiatura = "".join(c for c in t if c.isalpha() or c.isspace()) # creo un testo senza punteggiatura, solo lettere e spazi
     lista_parole = testo_senza_punteggiatura.split()
     lista_ordinata = []
     lunghezza_parola_maggiore = 1
-    set_parole = set()
     for controllo in range (15):
+        set_parole = set()
         for i in lista_parole:
             if len(i) == controllo:
                 set_parole.add(i.lower())
         set_parole = list (set_parole)
-        lista_ordinata =lista_ordinata + set_parole
-        set_parole = set()
+        lista_ordinata = lista_ordinata + set_parole
     return lista_ordinata
 
 def dizionario_valore():
+    """creo un dizionaro per vedere quante volte ogni carattere ricompare nel testo"""
     lista_lettere = list(t.lower())
     set_lettere = set(t.lower())
     conteggio = 0
@@ -152,6 +200,7 @@ def dizionario_valore():
     return lettere_conteggio
     
 def dizionario_valore_alfanumerico():
+    """controllo quante volte un carattere alfanumerico ricompare nel testo"""
     testo_senza_punteggiatura = "".join(c for c in t if c.isalpha())
     lista_lettere = list(testo_senza_punteggiatura.lower())
     set_lettere = set(testo_senza_punteggiatura.lower())

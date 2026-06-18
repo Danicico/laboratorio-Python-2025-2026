@@ -1,3 +1,35 @@
+#
+# File: esercizio_1.py
+#
+# Author: D. Cicogna
+#
+# Date: 2026/18/06
+#
+# Version: 1.0
+#
+# Description: scrivete una funzione di controllo, is_pari(n), 
+#che accetti come parametro un numero intero e restituisca True se il numero è pari, False altrimenti.
+#
+#Create una funzione di generazione che chieda all’utente un numero intero positivo e lo restituisca 
+#come risultato della funzione. Se l’utente inserisce un numero non valido (es. negativo o zero), 
+#il ciclo deve continuare a richiederlo finché l’input non è corretto.
+#
+#Scrivete una funzione che usando il numero scelto dall’utente,
+# generi una lista seguendo questa regola: se il numero è pari,
+# va diviso per 2; se è dispari, va moltiplicato per 3 e aggiunto 1. 
+#Il processo va ripetuto finchè si arriva a 1 o la lista abbia piu’ di 100 numeri
+#
+#Scrivete una funzione analizza_sequenza(lista) che riceva la lista generata e restituisca tre valori:
+# il valore massimo raggiunto, la lunghezza della sequenza e la somma di tutti i numeri.
+#
+#Scrivete una funzione ricerca(lista) che scorra la lista e stampi solo i numeri della sequenza che sono divisibili
+# per 5. Se non ce ne sono, va stampato un messaggio dedicato.
+#
+#Unite il tutto in un main program che chieda all’inizio all’utente quanti numeri vuole testare.
+# Usate uno o più loop per chiedere all’utente i numeri da analizzare e per eseguire i punti precedenti 
+#per ogni numero. Alla fine stampate un riepilogo che mostri quale numero iniziale ha generato la sequenza più lunga.
+#
+
 def is_pari (n):                                #creo la funzione per vedere se un numero è pari
     '''Vedo se un numero è pari o dispari'''    
     if n%2 == 0 :                               #verifico se il numero è pari   

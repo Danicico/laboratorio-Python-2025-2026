@@ -1,3 +1,27 @@
+#
+# File: esercizio_6.py
+#
+# Author: D.Cicogna
+#
+# Date: 22/06/2026
+#
+# Version: 1.0
+#
+# Description: Creare un programma per giocare con le tabelline.
+#
+#Il programma deve:
+#
+#contenere un generatore che, dato un numero (ad esempio 7), generi la tabellina corrispondente al numero selezionato (0x7 = 0; 1x7 = 7; 2x7 = 14; ecc…);
+#
+#contenere un loop che chieda in modo interrattivo all’utente di indovinare il valore corrente nella tabellina selezionata;
+#
+#gestire tutti i caratteri alfanumerici (non deve “rompersi” se l’utente sceglie una lettera);
+#
+#gestire caretteri speciali o numeri decimali;
+#
+#gestire la chiusura del gioco in modo personalizzato.
+#
+
 def generatore(numero):
     x = 0
     while True:
@@ -62,8 +86,4 @@ while controllo:
         else:
             print("comando non valido, riprovare")
 if punteggio_u == 0:
-    print("mi raccomando, ripassa bene le tabelline per la prossima volta, non è divertente vincere così ;)")
-
-
-        
-    
+    print("mi raccomando, ripassa bene le tabelline per la prossima volta, non è divertente vincere così ;)")    

@@ -1,3 +1,32 @@
+#
+# File: esercizio_5.py
+#
+# Author: D. Cicogna
+#
+# Date: 22/06/2026
+#
+# Version: 1.0
+#
+# Description: Trovate 10 soluzioni per il gioco delle regine con il metodo delle permutazioni: 
+#quanto è il tempo medio necessario a trovare una soluzione?
+#
+#Contate quanti tentativi fa il programma per trovare ogni soluzione del problema 8 regine
+#
+#Alcune soluzioni possono essere ripetute: fate in modo che le soluzioni siano “uniche”
+#
+#Se ci sono soluzioni ripetute, contate quante volte ogni soluzione è ripetuta
+#
+#Generalizzate il programma per risolvere una scacchiera di qualunque dimensione NxN
+#
+#Trovate quale è la scacchiera con lato N più grande possibile per cui si riesce a trovare 1 soluzione in meno di 15s
+#
+#Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, 
+#una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. 
+#Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
+#
+import random
+import time
+
 def stessa_diagonale(x0, y0, x1, y1):
     '''Ritorna Vero se posizioni (x0, y0) e (x1, y1) sono sulla stessa "diagonale"
     '''
@@ -46,30 +75,28 @@ def soluzione_ok(soluzione_posizioni):
     return True
 
 def rotazione_90(soluzione_posizioni, dim):
+    """creo la soluzione ruotata di 90 gradi rispetto alla soluzione data"""
     lista_90 = []
     for i in range(dim):
         lista_90.append(0)
     for c in range(dim):
-        lista_90[soluzione_posizioni[c]] = 7-c
-    return lista_90
+        lista_90[soluzione_posizioni[c]] = (dim - 1)-c
+    return lista_90 
 
 def rotazione_180(soluzione_posizioni, dim):
+    """creo la soluzione ruotata di 180 gradi rispetto alla soluzione data"""
     lista_180 = []
     for i in range(dim):
         lista_180.append(0)
     for c in range(dim):
-        lista_180[7-c]= 7-soluzione_posizioni[c]
+        lista_180[(dim - 1)-c]= (dim - 1)-soluzione_posizioni[c]
     return lista_180
 
 def rotazione_270(soluzione_posizioni, dim):
+    """creo la soluzione ruotata di 270 gradi rispetto alla soluzione data"""
     lista_t_90 = rotazione_90(soluzione_posizioni, dim)
     lista_270 = rotazione_180(lista_t_90, dim)
-    return lista_270
-
-
-
-import random
-import time 
+    return lista_270 
 
 def main():
     # inizializzo generatore permutazioni
@@ -104,9 +131,9 @@ def main():
 
             random_generator.shuffle(scacchiera)
             corretto = str(scacchiera)
-            if corretto in dizionario_ripetizioni:
+            if corretto in dizionario_ripetizioni:          #verifico se la soluzione era già comparsa e quante volte
                 dizionario_ripetizioni[corretto] += 1
-            if corretto not in dizionario_ripetizioni and soluzione_ok(scacchiera):
+            if corretto not in dizionario_ripetizioni and soluzione_ok(scacchiera):     #sennò la inserisco nel dizionario delle soluzioni già comparse
                 dizionario_ripetizioni[corretto] = 1
             numero_tentativi+=1
 
@@ -139,10 +166,7 @@ def main():
         print(lista_rotazioni)
     else:
         print ('numero di righe non valido')
-    tempo_inizio = time.time()
-    control_numero = 2
-    control = True
-    """while control:
+    while control:
         random_generator.shuffle(list(range(int(control_numero))))
         if soluzione_ok(scacchiera) and controllo: 
             tempo = time.time() - tempo_inizio
@@ -150,9 +174,7 @@ def main():
             control = False
         else:
             control_numero+=1
-    print ("la dimensione minima è " + str(control_numero))"""
-
-
+    print ("la dimensione minima è " + str(control_numero))
 
 
 

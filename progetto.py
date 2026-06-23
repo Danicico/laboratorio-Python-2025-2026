@@ -1,6 +1,18 @@
+#
+# File: Progetto.py
+#
+# Author: D.Cicogna
+#
+# Date: 23/06/2026
+#
+# Version: 1.0
+#
+# Description: Programma per giocare a poker texas hold'em contro un singolo avversario, ma senza che lui risponda (come se fosse un bot di allenamento)
+#
 import random
 budget = 1000
 def analisi_carte(mano, tavolo):
+    """creo un dizionario con tutti i numeri e i simboli"""
     carte = mano + tavolo
     dizionario_carte = dict()
     for i in range(len(carte)):
@@ -15,6 +27,7 @@ def analisi_carte(mano, tavolo):
     return dizionario_carte
 
 def vittoria(giocatore, avversario, valore_g, valore_a, budget, soldi):
+    """creo un programma base per vedere chi è il vincitore"""
     if giocatore and avversario:
         if valore_g>=valore_a:
             print("HAI VINTO!!!")
@@ -38,15 +51,15 @@ random_generator = random.Random()
 aumento = 0
 gioco = "1"
 while gioco == "1":
-    carte_mazzo = [[s, v] for s in simboli for v in valori]
+    carte_mazzo = [[s, v] for s in simboli for v in valori]         #uso una list comprehension per creare una lista di liste con tutte le carte a disposizione
     random_generator.shuffle(carte_mazzo)
     carte_giocatore = list()
     carte_avversario = list()
     carte_tavolo = list()
     controllo = 0
-    while controllo<5:
+    while controllo<5:                                              #creo il tavolo e le carte del giocatore e dell'avversario
         if controllo < 2:
-            carte_giocatore.append(carte_mazzo.pop())
+            carte_giocatore.append(carte_mazzo.pop())               #estraggo un elemento dalla lista carte mazzo, eliminandolo anche da quest'ultima
             carte_avversario.append(carte_mazzo.pop())
         carte_tavolo.append(carte_mazzo.pop())
         controllo += 1
@@ -62,7 +75,7 @@ while gioco == "1":
         carta_alta_a = int(carte_avversario[1][1])
     controllo_gioco = 1
     tavolo = 0
-    while controllo_gioco < 3:
+    while controllo_gioco < 3:                                  #faccio vedere le carte e scegliere all'utente cosa fare, e dopo mostro una nuova carta
         cosa_fare = input("Cosa vuoi fare (0: abbandonare la partita, 1: continuare ma non mettere soldi, 2: aumentare la posta in gioco, altri tasti: come tasto 1)? ")
         if cosa_fare != "0":
             if cosa_fare == "2" and budget > 0:
@@ -85,6 +98,7 @@ while gioco == "1":
         else:
             print("CARTE DEL TAVOLO: \n \n " + str(carte_tavolo))
             controllo_gioco = 5
+    # controllo un'ultima volta cosa vuole fare l'utente
     cosa_fare = input("Cosa vuoi fare (0: abbandonare la partita, 1: continuare ma non mettere soldi, 2: aumentare la posta in gioco, altri tasti: come tasto 1)? ")
     if cosa_fare == "2" and budget > 0:
         aumento = input("di quanto rialzi? ")
@@ -99,6 +113,7 @@ while gioco == "1":
         print("l'importo totale è adesso di: " + str(tavolo*2))
     elif budget == 0:
         print("sei già all in")
+    #mostro tutte le carte e faccio l'analisi di chi a vinto
     print("\n Signore e signori, showdown: \n \n" + "LE TUE CARTE: \n \n" + str(carte_giocatore) + "\n \nCARTE DEL TAVOLO: \n \n " + str(carte_tavolo) + "\n \n CARTE AVVERSARIO: \n \n " + str(carte_avversario))
     carte_tot_giocatore = analisi_carte(carte_giocatore, carte_tavolo)
     carte_tot_avversario = analisi_carte(carte_avversario, carte_tavolo)
@@ -134,7 +149,7 @@ while gioco == "1":
                 tris_g = True
                 valore_tris_g.append(int(i))
             elif carte_tot_giocatore[i] == 4:
-                poker = True
+                poker_g = True
                 valore_poker_g = i
             if str(int(i)+1) in carte_tot_giocatore:
                 if str(int(i)+2) in carte_tot_giocatore:
@@ -198,7 +213,7 @@ while gioco == "1":
     elif full_g or full_a:
         if max(valore_tris_g) != max(valore_tris_a):
             budget = vittoria(full_g, full_a, max(valore_tris_g), max(valore_tris_a), budget, tavolo)
-        elif max(valore_coppia_g) != max(valore_tris_a):
+        elif max(valore_coppia_g) != max(valore_coppia_a):
             budget = vittoria(full_g, full_a, max(valore_coppia_g), max(valore_coppia_a), budget, tavolo)
         elif carta_alta_a>carta_alta_g:
             print("hai perso")

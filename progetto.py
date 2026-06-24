@@ -7,7 +7,8 @@
 #
 # Version: 1.0
 #
-# Description: Programma per giocare a poker texas hold'em contro un singolo avversario, ma senza che lui risponda (come se fosse un bot di allenamento)
+# Description: Programma per giocare a poker texas hold'em contro un singolo avversario, ma senza che lui risponda 
+#(come se fosse un bot di allenamento)
 #
 import random
 budget = 1000
@@ -277,5 +278,4 @@ while gioco == "1":
         gioco = input("vuoi fare un'altra mano (1 = sì , altro tasto = no)? ")
     else:
         print("hai finito i soldi, non puoi più giocare")
-        gioco = 0
-    
+        gioco = 0  

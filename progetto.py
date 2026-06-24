@@ -75,44 +75,56 @@ while gioco == "1":
         carta_alta_a = int(carte_avversario[1][1])
     controllo_gioco = 1
     tavolo = 0
+    controllo_mano = True
+    budget = int(budget)
     while controllo_gioco < 3:                                  #faccio vedere le carte e scegliere all'utente cosa fare, e dopo mostro una nuova carta
         cosa_fare = input("Cosa vuoi fare (0: abbandonare la partita, 1: continuare ma non mettere soldi, 2: aumentare la posta in gioco, altri tasti: come tasto 1)? ")
         if cosa_fare != "0":
             if cosa_fare == "2" and budget > 0:
-                aumento = input("di quanto rialzi? ")
-                if int(aumento) < budget:
-                    budget = budget - int(aumento)
-                    print("adesso il tuo budget è di " + str(budget) + " euro")
-                else:
-                    aumento = budget
-                    print("allora vai all in")
-                    budget = 0
-                tavolo = tavolo + int(aumento)
-                print("l'importo totale è adesso di: " + str(tavolo*2))
+                aumento = input("di quanto rialzi? (non considero i centesimi, solo cifre tonde) ")
+                try:
+                    if int(aumento) < budget:
+                        budget = budget - int(aumento)
+                        print("adesso il tuo budget è di " + str(budget) + " euro")
+                    else:
+                        aumento = budget
+                        print("allora vai all in")
+                        budget = 0
+                    tavolo = tavolo + int(aumento)
+                    print("l'importo totale è adesso di: " + str(tavolo*2))
+                except ValueError:
+                    print("valore non valido, allora non punti e si va avanti")
             elif budget == 0:
                 print("sei già all in")
-            if cosa_fare != "0":
-                print("LE TUE CARTE: \n \n" + str(carte_giocatore))
-                print("CARTE DEL TAVOLO : \n \n " + str(carte_tavolo[0:controllo_gioco+3]))
+            print("LE TUE CARTE: \n \n" + str(carte_giocatore))
+            print("CARTE DEL TAVOLO : \n \n " + str(carte_tavolo[0:controllo_gioco+3]))
             controllo_gioco +=1
+        elif cosa_fare == "0":
+            controllo_mano = False
+            break
         else:
             print("CARTE DEL TAVOLO: \n \n " + str(carte_tavolo))
             controllo_gioco = 5
     # controllo un'ultima volta cosa vuole fare l'utente
-    cosa_fare = input("Cosa vuoi fare (0: abbandonare la partita, 1: continuare ma non mettere soldi, 2: aumentare la posta in gioco, altri tasti: come tasto 1)? ")
-    if cosa_fare == "2" and budget > 0:
-        aumento = input("di quanto rialzi? ")
-        if int(aumento) < budget:
-            budget = budget - int(aumento)
-            print("adesso il tuo budget è di " + str(budget) + " euro")
-        else:
-            aumento = budget
-            print("allora vai all in")
-            budget = 0
-        tavolo = tavolo + int(aumento)
-        print("l'importo totale è adesso di: " + str(tavolo*2))
-    elif budget == 0:
-        print("sei già all in")
+    if controllo_mano:
+        cosa_fare = input("Cosa vuoi fare (0: abbandonare la partita, 1: continuare ma non mettere soldi, 2: aumentare la posta in gioco, altri tasti: come tasto 1)? ")
+        if cosa_fare == "2" and budget > 0:
+            aumento = input("di quanto rialzi? ")
+            if int(aumento) < budget:
+                budget = budget - int(aumento)
+                print("adesso il tuo budget è di " + str(budget) + " euro")
+            else:
+                aumento = budget
+                print("allora vai all in")
+                budget = 0
+            tavolo = tavolo + int(aumento)
+            print("l'importo totale è adesso di: " + str(tavolo*2))
+        elif cosa_fare == "2" and budget == 0:
+            print("sei già all in")
+        elif cosa_fare == "0":
+            break
+    else:
+        break
     #mostro tutte le carte e faccio l'analisi di chi a vinto
     print("\n Signore e signori, showdown: \n \n" + "LE TUE CARTE: \n \n" + str(carte_giocatore) + "\n \nCARTE DEL TAVOLO: \n \n " + str(carte_tavolo) + "\n \n CARTE AVVERSARIO: \n \n " + str(carte_avversario))
     carte_tot_giocatore = analisi_carte(carte_giocatore, carte_tavolo)
@@ -261,5 +273,9 @@ while gioco == "1":
         else:
             print("hai perso")
             print("il tuo budget è adesso di: " + str(budget))
-    gioco = input("vuoi fare un'altra mano (1 = sì , altro tasto = no)? ")
+    if budget > 0:
+        gioco = input("vuoi fare un'altra mano (1 = sì , altro tasto = no)? ")
+    else:
+        print("hai finito i soldi, non puoi più giocare")
+        gioco = 0
     
